@@ -1,0 +1,20 @@
+.navbar-nav {
+    margin-left: 75%;
+
+}
+.navbar-brand{
+    margin-left: 5%;
+}
+.container {
+    margin-top: 20px;
+    width: 1350px;
+    height: 280px;
+    border-color: black;
+    border: 5px;
+}
+
+
+img.img1{
+    width: 660px;
+    height: 400px;
+}
