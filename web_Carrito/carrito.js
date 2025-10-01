@@ -1,12 +1,12 @@
 import { data } from "./scriptapi";
 
-class Carrito {
+export class Carrito {
     constructor() {
-        this.currency = "€"
+        this.currency = "€";
         this.productos = [];
     }
 }
 
-actualizarUnidades () {
+actualizarUnidades (sku, unidades) {
     
 }
