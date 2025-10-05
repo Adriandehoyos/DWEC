@@ -7,6 +7,7 @@ export class Carrito {
     }
 
 
+//De momento no le doy uso pensando si implementarlo o no. De momento tengo una funcion ya declarada en el script main
 // Método que actualiza o añade productos
 actualizarUnidades(sku, unidades) {
     // Buscamos si el producto ya existe en el carrito
@@ -15,7 +16,7 @@ actualizarUnidades(sku, unidades) {
     });
 
     if (item) {
-        // Si ya existe → cambiamos la cantidad
+        // Si ya existe, cambiamos la cantidad
         item.quantity = unidades;
     } else {
         //Buscamos el producto en la api
@@ -51,6 +52,3 @@ actualizarUnidades(sku, unidades) {
 
 
 }//
-const carrito = new Carrito();
-carrito.actualizarUnidades("TGD5XORY1L", 2);
-console.log(carrito.productos);
