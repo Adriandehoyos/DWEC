@@ -7,8 +7,8 @@ export class Carrito {
     }
 
 
-//De momento no le doy uso pensando si implementarlo o no. De momento tengo una funcion ya declarada en el script main
-// Método que actualiza o añade productos
+
+// Método que actualiza la cantidad y crea el producto con cantidad para la parte derecha con el total general
 actualizarUnidades(sku, unidades) {
     // Buscamos si el producto ya existe en el carrito
     const item = this.productos.find(function(p) {
@@ -36,6 +36,7 @@ actualizarUnidades(sku, unidades) {
         }
     }
 }
+
 
 
 

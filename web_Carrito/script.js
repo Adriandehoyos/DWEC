@@ -5,11 +5,23 @@ const carrito = new Carrito();
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    //Creo las cosas que voy a usar en la tabla como los botones
+    //declaro las dos tbody del Index
     const tablebody = document.getElementById('tbody');
-    
+    const tablebodytotal = document.getElementById('tbodytotal');
+    let allPrice; //Creo el allprice primero para que pueda pasar la funcion antes del foreach y no se me descoloque el orden de las cosas
 
 
+    //Funcion para calcular el total de todos los productos
+    function actualizarTotalGeneral() {
+        let totalGeneral = 0;
+
+        carrito.productos.forEach(p => {
+            totalGeneral += p.price * p.quantity;
+        });
+
+        // Actualiza el td del total
+        allPrice.textContent = `${totalGeneral.toFixed(2)}${data.currency}`;
+    }
 
 
     //Crear las filas con los productos
@@ -65,12 +77,34 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         fila.append(total);
 
+        //agregar la fila entera a la tabla
+        tablebody.append(fila);
 
+
+        //Creamos la fila del total
+        const filaTotal = document.createElement('tr');
+        //Donde saldra el titulo del producto que se ha añadido
+        const pro = document.createElement('td');  
+        filaTotal.append(pro);
+        //Fila precio total
+        const price = document.createElement('td');
+        filaTotal.append(price);
+        //Añadimos la fila entera a la tabla
+        tablebodytotal.append(filaTotal);
+
+
+
+        //FUNCIONALIDADES
         //funcion calcular total de cada producto
             function actualizarTotal() {
             const cant = Number(cajitaCant.value);
             const totalCalculado = cant * item.price;
             total.textContent = `${totalCalculado.toFixed(2)}${data.currency}`;//Aqui le limito a 2 decimales para la estetica sino da demasiados decimales
+            pro.textContent = item.title;//Parte de la derecha 
+            price.textContent = `${totalCalculado.toFixed(2)}${data.currency}`;//Parte de la derecha
+            carrito.actualizarUnidades(item.SKU, cant);
+            actualizarTotalGeneral();
+
         }
 
         //eventos botones
@@ -84,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 bMenos.disabled = false;
                 cajitaCant.value--;
                 actualizarTotal();
+                carrito.actualizarUnidades(item.SKU, Number(cajitaCant.value));
             }
         });
 
@@ -92,12 +127,31 @@ document.addEventListener('DOMContentLoaded', function () {
             cajitaCant.value++;
             bMenos.disabled = false;
             actualizarTotal();
+            carrito.actualizarUnidades(item.SKU, Number(cajitaCant.value));
         });
 
         
-        //agregar la fila a la tabla
-        tablebody.append(fila);
+        
+
+
+
+
+
+
     });
+
+    //Creo la fila con el total de todos los precios 
+    const finalT = document.createElement('tr'); 
+    //La palabra total 
+    const t = document.createElement('td'); 
+    t.textContent = `TOTAL`; 
+    finalT.append(t); 
+    //El calculo de todo 
+    allPrice = document.createElement('td'); 
+    finalT.append(allPrice); 
+    tablebodytotal.append(finalT); 
+
+
 
 
 
