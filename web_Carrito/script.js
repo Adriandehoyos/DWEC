@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //Boton menos
             const bMenos = document.createElement('button');
+            bMenos.classList.add('btn')
             bMenos.textContent = '-';
             bMenos.disabled = true;
             cantidad.append(bMenos);
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //caja con el numero
             const cajitaCant = document.createElement('Input'); 
+            cajitaCant.classList.add('caja')
             cajitaCant.type = 'number'
             cajitaCant.readOnly = true;
             cajitaCant.value = 0;
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //Boton mas
             const bMas = document.createElement('button');
+            bMas.classList.add('btn')
             bMas.textContent = '+';
             cantidad.append(bMas);
             
@@ -100,8 +103,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const cant = Number(cajitaCant.value);
             const totalCalculado = cant * item.price;
             total.textContent = `${totalCalculado.toFixed(2)}${data.currency}`;//Aqui le limito a 2 decimales para la estetica sino da demasiados decimales
-            pro.textContent = item.title;//Parte de la derecha 
+            pro.textContent = `${item.title} x ${Number(cajitaCant.value)}`;//Parte de la derecha 
             price.textContent = `${totalCalculado.toFixed(2)}${data.currency}`;//Parte de la derecha
+            //Cuando esta en 0 unidades desaparezca la fila
+            if (cant === 0) {
+                filaTotal.style.display = "none"; //Si la cantidad es 0 oculta la fila
+            } else {
+                filaTotal.style.display = "table-row"; //Si es mayor que 0 la muestra
+            }
             carrito.actualizarUnidades(item.SKU, cant);
             actualizarTotalGeneral();
 
@@ -146,13 +155,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const t = document.createElement('td'); 
     t.textContent = `TOTAL`; 
     finalT.append(t); 
-    //El calculo de todo 
+    //La suma de todos los precios
     allPrice = document.createElement('td'); 
     finalT.append(allPrice); 
     tablebodytotal.append(finalT); 
 
-
-
+    finalT.classList.add('filaAbajoT')
 
 
 

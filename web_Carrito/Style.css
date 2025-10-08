@@ -1,3 +1,28 @@
 .navbar {
     border-bottom: 1px solid rgb(206, 198, 198) ;
 }
+
+.filaAbajoT {
+    border-bottom: 0px;
+    border-top: 1px solid gray;
+}
+
+.caja {
+    border: 1px solid #ccc; 
+    border-radius: 5px;    
+    padding: 10px;         
+    background-color: #f9f9f9; 
+    font-size: 16px;
+    width: 60px;
+    text-align: end;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.btn {
+    color:black; 
+    padding: 12px 10px; 
+    border: none; 
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre él */
+    font-size: 16px; 
+}
