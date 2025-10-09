@@ -3,6 +3,8 @@ import { Carrito } from "./carrito.js";
 
 const carrito = new Carrito();
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     //declaro las dos tbody del Index
@@ -10,6 +12,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablebodytotal = document.getElementById('tbodytotal');
     let allPrice; //Creo el allprice primero para que pueda pasar la funcion antes del foreach y no se me descoloque el orden de las cosas
 
+    
+
+    //Cargamos los productos de la api
+    fetch('http://localhost:8080/api/carrito')
+        .then(response => response.json())
+        .then(apiData =>{
+            data.products = apiData.products; //mete los datos en el constructor que tenia para la API de antes
+            inicializarTabla(); //carga la tabla
+    }); 
 
     //Funcion para calcular el total de todos los productos
     function actualizarTotalGeneral() {
@@ -23,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
         allPrice.textContent = `${totalGeneral.toFixed(2)}${data.currency}`;
     }
 
-
+    //Funcion para que se inicie la tabla cuando pasamos los datos de la API
+    function inicializarTabla() {
     //Crear las filas con los productos
     data.products.forEach(item =>{
     
@@ -34,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //La fila con producto
         const proYref = document.createElement('td');
-        proYref.innerHTML = `${item.title}<br>${item.SKU}`;
+        proYref.innerHTML = `${item.title}<br>${item.sku}`;
         fila.append(proYref);
 
         //Fila de cantidad
@@ -111,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 filaTotal.style.display = "table-row"; //Si es mayor que 0 la muestra
             }
-            carrito.actualizarUnidades(item.SKU, cant);
+            carrito.actualizarUnidades(item.sku, cant);
             actualizarTotalGeneral();
 
         }
@@ -127,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 bMenos.disabled = false;
                 cajitaCant.value--;
                 actualizarTotal();
-                carrito.actualizarUnidades(item.SKU, Number(cajitaCant.value));
+                carrito.actualizarUnidades(item.sku, Number(cajitaCant.value));
             }
         });
 
@@ -136,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
             cajitaCant.value++;
             bMenos.disabled = false;
             actualizarTotal();
-            carrito.actualizarUnidades(item.SKU, Number(cajitaCant.value));
+            carrito.actualizarUnidades(item.sku, Number(cajitaCant.value));
         });
 
         
@@ -161,6 +173,12 @@ document.addEventListener('DOMContentLoaded', function () {
     tablebodytotal.append(finalT); 
 
     finalT.classList.add('filaAbajoT')
+
+
+}
+
+
+
 
 
 

@@ -9,10 +9,10 @@ export class Carrito {
 
 
 // Método que actualiza la cantidad y crea el producto con cantidad para la parte derecha con el total general
-actualizarUnidades(sku, unidades) {
+actualizarUnidades(ref, unidades) {
     // Buscamos si el producto ya existe en el carrito
     const item = this.productos.find(function(p) {
-        return p.sku === sku;
+        return p.sku === ref;
     });
 
     if (item) {
@@ -21,12 +21,12 @@ actualizarUnidades(sku, unidades) {
     } else {
         //Buscamos el producto en la api
         const productoApi = data.products.find(function(p){
-            return p.SKU === sku;
+            return p.sku === ref;
         });
         if (productoApi){
             //Añadimos todos sus datos de la api para el constructor de productos
             this.productos.push({
-                    sku: productoApi.SKU,
+                    ref: productoApi.sku,
                     title: productoApi.title,
                     price: productoApi.price,
                     quantity: unidades
