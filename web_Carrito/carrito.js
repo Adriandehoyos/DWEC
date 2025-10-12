@@ -1,9 +1,8 @@
-import { data } from "./scriptapi.js";
-
 export class Carrito {
     constructor() {
         this.currency = "€";
-        this.productos = [];
+        this.productos = [];//array en el que metere los productos cuando se añaden unidades
+        this.products = [];//array donde cargo todo el array de productos de la API
     }
 
 
@@ -20,7 +19,7 @@ actualizarUnidades(sku, unidades) {
         item.quantity = unidades;
     } else {
         //Buscamos el producto en la api
-        const productoApi = data.products.find(function(p){
+        const productoApi = this.products.find(function(p){
             return p.sku === sku;
         });
         if (productoApi){

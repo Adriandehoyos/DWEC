@@ -1,6 +1,16 @@
 .navbar {
     border-bottom: 1px solid rgb(206, 198, 198) ;
+    margin-bottom: 7px;
 }
+
+/*Estilo para la tabla de total para todas las celdas*/
+.table-total, 
+.table-total th, 
+.table-total td {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
+
 
 .filaAbajoT {
     border-bottom: 0px;
@@ -25,4 +35,8 @@
     border: none; 
     cursor: pointer; /* Cambia el cursor a una mano al pasar sobre él */
     font-size: 16px; 
+}
+
+.oculto { /* Estilo para ocultar la fila cuando no tiene productos*/
+    display: none;
 }

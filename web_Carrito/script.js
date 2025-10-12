@@ -1,8 +1,6 @@
-import { data } from "./scriptapi.js";
 import { Carrito } from "./carrito.js";
 
 const carrito = new Carrito();
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -11,14 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablebody = document.getElementById('tbody');
     const tablebodytotal = document.getElementById('tbodytotal');
     let allPrice; //Creo el allprice primero para que pueda pasar la funcion antes del foreach y no se me descoloque el orden de las cosas
-
-    
+    let currency; //Declaro currency en el que paso la moneda de la API
 
     //Cargamos los productos de la api
     fetch('http://localhost:8080/api/carrito')
         .then(response => response.json())
         .then(apiData =>{
-            data.products = apiData.products; //mete los datos en el constructor que tenia para la API de antes
+            currency = apiData.currency //Declaro la moneda
+            carrito.products = apiData.products; //Meto el array de la API en el que tengo declarado aqui
             inicializarTabla(); //carga la tabla
     }); 
 
@@ -31,22 +29,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Actualiza el td del total
-        allPrice.textContent = `${totalGeneral.toFixed(2)}${data.currency}`;
+        allPrice.textContent = `${totalGeneral.toFixed(2)}${currency}`;
     }
 
     //Funcion para que se inicie la tabla cuando pasamos los datos de la API
     function inicializarTabla() {
     //Crear las filas con los productos
-    data.products.forEach(item =>{
+    carrito.products.forEach(item =>{
     
-
-
         //Creamos la fila
         const fila = document.createElement('tr');
 
         //La fila con producto
+        //Creo un div dentro de la celda para meter titulo y SKU sin tener que usar br y con salto de pagina
         const proYref = document.createElement('td');
-        proYref.innerHTML = `${item.title}<br>${item.sku}`;
+        const divIC = document.createElement('div');
+        proYref.append(divIC);
+        const pT = document.createElement('h2');
+        pT.textContent = item.title;
+        divIC.append(pT);
+        const pR = document.createElement('p');
+        pR.textContent = `REF: ` + item.sku;
+        divIC.append(pR);
         fila.append(proYref);
 
         //Fila de cantidad
@@ -81,14 +85,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //Fila de Precio Unidad
         const pUnidad = document.createElement('td');
-        pUnidad.textContent = `${item.price}${data.currency}`;
+        pUnidad.textContent = `${item.price}${currency}`;
         fila.append(pUnidad);
+
 
         //Fila de Total
         const total = document.createElement('td');
         //If para que muestre a 0 si no hay ninguna unidad
         if(Number(cajitaCant.value) === 0){
-            total.textContent = `0${data.currency}`;
+            total.textContent = `0${currency}`;
         }
         fila.append(total);
 
@@ -114,14 +119,14 @@ document.addEventListener('DOMContentLoaded', function () {
             function actualizarTotal() {
             const cant = Number(cajitaCant.value);
             const totalCalculado = cant * item.price;
-            total.textContent = `${totalCalculado.toFixed(2)}${data.currency}`;//Aqui le limito a 2 decimales para la estetica sino da demasiados decimales
+            total.textContent = `${totalCalculado.toFixed(2)}${currency}`;//Aqui le limito a 2 decimales para la estetica sino da demasiados decimales
             pro.textContent = `${item.title} x ${Number(cajitaCant.value)}`;//Parte de la derecha 
-            price.textContent = `${totalCalculado.toFixed(2)}${data.currency}`;//Parte de la derecha
-            //Cuando esta en 0 unidades desaparezca la fila
+            price.textContent = `${totalCalculado.toFixed(2)}${currency}`;//Parte de la derecha
+            //Cuando esta en 0 unidades oculta la fila
             if (cant === 0) {
-                filaTotal.style.display = "none"; //Si la cantidad es 0 oculta la fila
+                filaTotal.classList.add('oculto'); //Si la cantidad es 0 oculta la fila
             } else {
-                filaTotal.style.display = "table-row"; //Si es mayor que 0 la muestra
+                filaTotal.classList.remove('oculto'); //Si es mayor que 0 la muestra
             }
             carrito.actualizarUnidades(item.sku, cant);
             actualizarTotalGeneral();
