@@ -23,7 +23,7 @@ actualizarUnidades(sku, unidades) {
             return p.sku === sku;
         });
         if (productoApi){
-            //Añadimos todos sus datos de la api para el constructor de productos
+            //Añadimos todos sus datos de la api para el constructor de productos, pero ahora con cantidad
             this.productos.push({
                     sku: productoApi.sku,
                     title: productoApi.title,

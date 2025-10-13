@@ -1,0 +1,7 @@
+npm install -g typescript
+node -v
+npm install -g ts-node
+npm install -g npm
+npm -v
+npm install -g @angular/cli
+ng version
