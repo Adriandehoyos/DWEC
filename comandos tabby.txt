@@ -1,0 +1,15 @@
+npm install -g typescript
+node -v
+npm install -g ts-node
+npm install -g npm
+npm -v
+npm install -g @angular/cli
+ng versión
+//Para crear un nuevo proyecto
+ng new nombreproyecto --skip-tests
+//para entrar nos metemos en la carpeta y luego
+code .
+//levantar el servidor
+ng s -o
+//Crear componente
+ng g c componentes/nombreComponente
