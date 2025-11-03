@@ -13,3 +13,5 @@ code .
 ng s -o
 //Crear componente
 ng g c componentes/nombreComponente
+//instalar Bootstrap en el proyecto, tienes que estar dentro de la carpeta del proyecto
+npm install bootstrap
