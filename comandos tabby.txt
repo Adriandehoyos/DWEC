@@ -14,4 +14,10 @@ ng s -o
 //Crear componente
 ng g c componentes/nombreComponente
 //instalar Bootstrap en el proyecto, tienes que estar dentro de la carpeta del proyecto
-npm install bootstrap
+npm install Bootstrap
+//Una vez instalado en el angular.json cambiamos la linea de Style y ponemos esta
+            "styles": [
+              "src/styles.css","node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          },
