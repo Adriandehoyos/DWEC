@@ -2,41 +2,43 @@
   <div class="row row-cols-2 g-4"><!--Divido en dos columnas el formulario + las noticias-->
     <!--Formulario-->
     <div class="col">
-      <form>
-      <div class="mb-3">
-        <label class="form-label">Titulo</label>
-        <input type="text" class="form-control" id="titulo" placeholder="Titulo de la noticia"  [(ngModel)] = "nuevaNoticia.titulo" name="titulo">
-      </div>
+      <h2>AÑADE TU UNA NOTICIA</h2>
+      <form #noticiaForm="ngForm"> <!--añado ngform para que el boton de publicar noticia este desactivado hasta que esten todos los campos rellenos-->
+        <div class="mb-3">
+          <label class="form-label">Titulo</label>
+          <input type="text" class="form-control" id="titulo" placeholder="Titulo de la noticia"  [(ngModel)] = "nuevaNoticia.titulo" name="titulo" required>
+        </div>
 
-      <div class="mb-3">
-        <label for="url" class="form-label">Imagen URl</label>
-        <input type="url" class="form-control" id="url" placeholder="Pega aqui la URL de tu imagen" [(ngModel)] = "nuevaNoticia.url" name="url">
-      </div>
+        <div class="mb-3">
+          <label for="url" class="form-label">Imagen URl</label>
+          <input type="url" class="form-control" id="url" placeholder="Pega aqui la URL de tu imagen" [(ngModel)] = "nuevaNoticia.url" name="url" required>
+        </div>
 
-      <div class="mb-3">
-        <label class="form-label">Cuerpo</label>
-        <input type="text" class="form-control" id="cuerpo" placeholder="Explica la noticia" [(ngModel)] = "nuevaNoticia.cuerpo" name="cuerpo">
-      </div>
+        <div class="mb-3">
+          <label class="form-label">Cuerpo</label>
+          <input type="text" class="form-control" id="cuerpo" placeholder="Explica la noticia" [(ngModel)] = "nuevaNoticia.cuerpo" name="cuerpo" required>
+        </div>
 
-      <div class="mb-3">
-        <label class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="fecha" placeholder="fecha de lo ocurrido" [(ngModel)] = "nuevaNoticia.fecha" name="fecha">
-      </div>
+        <div class="mb-3">
+          <label class="form-label">Fecha</label>
+          <input type="date" class="form-control" id="fecha" placeholder="fecha de lo ocurrido" [(ngModel)] = "nuevaNoticia.fecha" name="fecha" required>
+        </div>
 
-      <button class="btn btn-primary" (click)="agregarNoticia()">Publicar Noticia</button>
+        <button class="btn btn-primary" (click)="agregarNoticia()"  [disabled]="!noticiaForm.valid" >Publicar Noticia</button> <!--Boton desabilitado hasta estar el formulario lleno-->
     </form>
   </div>
   <!--Noticias-->
     <div class="col">
+      <h2>NOTICIAS DEL DIA</h2>
       <div class="row row-cols-2 g-3"> <!--apilo las noticias de 2 en 2-->
         @for (noticia of noticias; track noticia) {
           <div class="col">
-            <div class="card" style="width: 20rem;">
-              <img [src]="noticia.url" class="card-img-top noticia-imagen" >
+              <div class="card mb-3">
+                <img [src]="noticia.url" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">{{ noticia.titulo }}</h5>
                   <p class="card-text">{{ noticia.cuerpo }}</p>
-                  <a href="#" class="btn btn-primary">{{ noticia.fecha | date:'dd/MM/yyyy'}}</a>
+                  <p class="card-text"><small class="text-body-secondary">{{ noticia.fecha | date:'dd/MM/yyyy'}}</small></p>
                 </div>
               </div>
             </div>
