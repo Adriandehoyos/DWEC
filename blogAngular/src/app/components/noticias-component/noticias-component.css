@@ -1,0 +1,11 @@
+.noticia-imagen {
+    /* Altura y Ancho Fijos: ajusta estos valores según tus preferencias */
+    width: 100%; /* El 100% del ancho de la tarjeta (18rem) */
+    height: 100%;
+
+    /* Controla como se ajusta la imagen dentro de las dimensiones fijas */
+    object-fit: cover;
+
+    /* Esto asegura que la parte superior de la imagen se alinee al tope*/
+    object-position: top;
+}

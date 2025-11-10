@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bloggingAngular": {
+    "blogAngular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -82,10 +82,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bloggingAngular:build:production"
+              "buildTarget": "blogAngular:build:production"
             },
             "development": {
-              "buildTarget": "bloggingAngular:build:development"
+              "buildTarget": "blogAngular:build:development"
             }
           },
           "defaultConfiguration": "development"
