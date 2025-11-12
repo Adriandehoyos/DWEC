@@ -1,22 +1,23 @@
 /*Contenedor general */
 .container-fluid {
   padding: 2rem;
-  font-family: 'Arial', sans-serif; /* Tipografía*/
+  font-family: 'Arial', sans-serif; /*Tipografía*/
 }
 
-/*Títulos*/
+/*Titulos*/
 h2 {
   margin-bottom: 1.5rem;
-  color: #0d6efd; /* Color principal azul */
+  color: #0d6efd; /*Color principal azul*/
   font-weight: 600;
 }
+/*altura del text area para meter el cuerpo de la noticia*/
 textarea{
   height: 10rem;
 }
 
 /*Formulario*/
 form {
-  background-color: #f8f9fa; /* Fondo claro */
+  background-color: #f8f9fa; /*Fondo claro*/
   padding: 1.5rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -31,18 +32,18 @@ form {
 }
 
 
-/* Estado colapsado, muestra solo 3 líneas */
-.collapsed {
+/*Estado recogido, muestra solo 3 lineas*/
+.recogido {
   display: -webkit-box;
-  -webkit-line-clamp: 3;      /* número de líneas visibles */
+  -webkit-line-clamp: 3;      /*numero de lineas visibles*/
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 5.5em;
 }
 
-/* Estado expandido, muestra todo */
-.expanded {
+/*Estado expandido, muestra todo*/
+.expandido {
   display: block;
   overflow: visible;
   -webkit-line-clamp: unset;
@@ -50,10 +51,10 @@ form {
 }
 /*Estilos para que la imagen este maquetada y no me pueda descolocar la pagina*/
 .card img {
-  width: 100%;           /* que ocupe todo el ancho de su contenedor */
-  height: 17rem;         /* altura fija */
-  object-fit: cover;     /* recorta la imagen para que encaje sin deformarse */
-  border-radius: 0.25rem; /* opcional: mantener bordes redondeados */
+  width: 100%;           /*que ocupe todo el ancho de su contenedor*/
+  height: 17rem;         /*altura fija*/
+  object-fit: cover;     /*recorta la imagen para que encaje sin deformarse*/
+  border-radius: 0.25rem; /*mantener bordes redondeados*/
 }
 
 /*hover para el efecto de las noticias*/

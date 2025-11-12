@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-noticias-component',
-  imports:[DatePipe, FormsModule, CommonModule], //importo el datepipe para poder mostrar la fecha de la manera que quiero en el html
+  imports:[DatePipe, FormsModule, CommonModule], //importo el datepipe para poder mostrar la fecha de la manera que quiero en el html, el formsModule para el formulario y el commonModule para usar el ngclass
   templateUrl: './noticias-component.html',
   styleUrl: './noticias-component.css',
 })
@@ -55,7 +55,8 @@ export class NoticiasComponent {
 
     // Limpiar el formulario
     this.nuevaNoticia = { titulo: "", url: "", cuerpo: "", fecha: new Date() };
-    }
+
+  }
 
   leerMas(noticia: any) {
   noticia.expandido = !noticia.expandido;

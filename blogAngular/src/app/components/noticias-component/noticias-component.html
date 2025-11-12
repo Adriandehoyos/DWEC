@@ -41,8 +41,8 @@
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title"><strong>{{ noticia.titulo }}</strong></h5>
-                        <p class="card-text" [ngClass]="{ 'collapsed': !noticia.expandido, 'expanded': noticia.expandido }">
-                          {{ noticia.cuerpo }} <!--Utilizo un ngClass para cambiar el estilo de collapsed a expanded segun este el boleano de noticia.expandido-->
+                        <p class="card-text" [ngClass]="{ 'recogido': !noticia.expandido, 'expandido': noticia.expandido }">
+                          {{ noticia.cuerpo }} <!--Utilizo un ngClass para cambiar el estilo de recogido a expandido segun este el boleano de noticia.expandido-->
                         </p>
                         <button class="btn btn-primary" (click)="leerMas(noticia)">
                         {{ noticia.expandido ? 'Leer menos' : 'Leer más' }} <!--Boton en el que cuando le doy click se cambia entre leer mas y menos y llama a la funcion de leermas para cambiar el boolean de expandido-->
