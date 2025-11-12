@@ -1,0 +1,16 @@
+.blog-header h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #c0cad9;
+}
+
+header {
+  height: 50px;
+  background: linear-gradient(90deg, #0d6efd, #6c63ff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}

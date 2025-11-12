@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row row-cols-2 g-4"><!--Divido en dos columnas el formulario + las noticias-->
+  <div class="row g-4">
     <!--Formulario-->
-    <div class="col">
+    <div class="col-12 col-lg-4">
       <h2>AÑADE TU UNA NOTICIA</h2>
       <form #noticiaForm="ngForm"> <!--añado ngform para que el boton de publicar noticia este desactivado hasta que esten todos los campos rellenos-->
         <div class="mb-3">
@@ -16,7 +16,7 @@
 
         <div class="mb-3">
           <label class="form-label">Cuerpo</label>
-          <input type="text" class="form-control" id="cuerpo" placeholder="Explica la noticia" [(ngModel)] = "nuevaNoticia.cuerpo" name="cuerpo" required>
+          <textarea class="form-control" id="cuerpo" placeholder="Explica la noticia" [(ngModel)] = "nuevaNoticia.cuerpo" name="cuerpo" required></textarea>
         </div>
 
         <div class="mb-3">
@@ -28,18 +28,29 @@
     </form>
   </div>
   <!--Noticias-->
-    <div class="col">
+    <div class="col-12 col-lg-8">
       <h2>NOTICIAS DEL DIA</h2>
-      <div class="row row-cols-2 g-3"> <!--apilo las noticias de 2 en 2-->
+      <div class="row g-3">
         @for (noticia of noticias; track noticia) {
-          <div class="col">
+          <div class="col-12">
               <div class="card mb-3">
-                <img [src]="noticia.url" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">{{ noticia.titulo }}</h5>
-                  <p class="card-text">{{ noticia.cuerpo }}</p>
-                  <p class="card-text"><small class="text-body-secondary">{{ noticia.fecha | date:'dd/MM/yyyy'}}</small></p>
-                </div>
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img [src]="noticia.url" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title"><strong>{{ noticia.titulo }}</strong></h5>
+                        <p class="card-text" [ngClass]="{ 'collapsed': !noticia.expandido, 'expanded': noticia.expandido }">
+                          {{ noticia.cuerpo }} <!--Utilizo un ngClass para cambiar el estilo de collapsed a expanded segun este el boleano de noticia.expandido-->
+                        </p>
+                        <button class="btn btn-primary" (click)="leerMas(noticia)">
+                        {{ noticia.expandido ? 'Leer menos' : 'Leer más' }} <!--Boton en el que cuando le doy click se cambia entre leer mas y menos y llama a la funcion de leermas para cambiar el boolean de expandido-->
+                        </button>
+                        <p class="card-text"><small class="text-body-secondary">{{ noticia.fecha | date:'dd/MM/yyyy'}}</small></p>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
           }
