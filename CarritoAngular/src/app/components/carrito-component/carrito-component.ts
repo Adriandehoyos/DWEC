@@ -18,12 +18,8 @@ export class CarritoComponent {
   ApiService = inject(ApiService);
 
   constructor(){
-    this.arrayCarrito = [{
-      sku: "",
-      title: "",
-      price: ""
-  }];
-    this.currency = "";
+    this.arrayCarrito = [];
+    this.currency="";
   }
 
       ngOnInit(): void {

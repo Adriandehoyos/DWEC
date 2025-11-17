@@ -1,3 +1,6 @@
-@for(carrito of arrayCarrito; track $index){
-  <p>{{arrayCarrito}}</p>
-}
+<div class="container">
+  @for(carrito of arrayCarrito; track $index){
+    <p>El titulo del producto</p>
+    <p>{{carrito.title}}</p>
+  }
+</div>
