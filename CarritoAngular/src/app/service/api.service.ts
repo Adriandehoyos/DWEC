@@ -7,18 +7,19 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   private datos: IproductInterfaces[];
-  private moneda: String;
+  private currency : String;
 
   constructor(){
-        this.moneda = "";
         this.datos = [];
+        this.currency = "";
           //Cargamos los productos de la api
       fetch('http://localhost:8080/api/carrito')
           .then(response => response.json())
           .then(apiData =>{
+            console.log(apiData);
+            this.currency = apiData.currency;
             apiData.products.forEach((producto: IproductInterfaces) => {
               this.datos.push(producto);
-              this.moneda = apiData.currency;
             });
 
 
@@ -28,8 +29,8 @@ export class ApiService {
 
     return this.datos;
   }
-  getCurrency(){
-    return this.moneda;
+  getCurrency(): String{
+    return this.currency;
   }
 
 }
