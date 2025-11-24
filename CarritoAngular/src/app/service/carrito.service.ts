@@ -70,8 +70,9 @@ export class CarritoService {
       //parseFloat, porque en el back el precio esta como String
       const precio = parseFloat(item.producto.price);
       return precio * item.cantidad;
+    }else{
+      return 0;
     }
-    return 0;
   }
 
 

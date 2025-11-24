@@ -3,12 +3,14 @@
     <h3>Articulos Seleccionados</h3>
     <hr>
     @for(item of arrayTotal; track item.producto.sku){
+      <div class="d-flex">
       <div class="card-title">
         <strong>{{item.producto.title}}</strong>
       </div>
       <div class="card-text">
         <small>{{item.cantidad}} x {{item.producto.price}}{{currency}} --> </small>
-        <strong>{{CarritoService.calcularSubtotal(item.producto.sku).toFixed(2)}}{{currency}}</strong>
+        <strong>{{CarritoService.calcularSubtotal(item.producto.sku).toFixed(2)}}{{currency}}</strong><!--toFixed para limitar a dos decimales-->
+        </div>
         </div>
     }@empty {
       <h4>Carrito Vacio</h4>
