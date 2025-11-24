@@ -4,10 +4,11 @@ import { IproductInterfaces } from '../../interfaces/iproduct.interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductoComponent } from "../producto-component/producto-component";
+import { TotalComponent } from "../total-component/total-component";
 
 @Component({
   selector: 'app-carrito-component',
-  imports: [CommonModule, FormsModule, ProductoComponent],
+  imports: [CommonModule, FormsModule, ProductoComponent, TotalComponent],
   templateUrl: './carrito-component.html',
   styleUrl: './carrito-component.css',
 })

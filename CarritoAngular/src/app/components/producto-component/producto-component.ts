@@ -26,8 +26,18 @@ export class ProductoComponent {
 
   }
 
+  //Paso los metodos del service para poder usarlo en los botones
   sumarCantidad(){
+    this.CarritoService.añadirProducto(this.miProducto);
+  }
 
+  quitarCantidad(){
+    this.CarritoService.quitarCantidad(this.miProducto.sku);
+  }
+
+  //pido la cantidad que tiene el producto en el service para mostrarlo en la card del item
+  getCantidad(): number{
+    return this.CarritoService.getCantidadProducto(this.miProducto.sku);
   }
 
 
