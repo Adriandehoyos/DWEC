@@ -4,7 +4,7 @@
     <h6 class="card-title">href: {{miProducto.sku}}</h6>
     <p class="card-text">Precio: {{miProducto.price}}{{currency}}</p>
     <button class="btn btn-danger mx-1" (click)="quitarCantidad()">-</button>
-    <input type="number" [value]="getCantidad()" style="width: 20%; height: 20%;" readonly>
+    <input class="text-center" type="number" [value]="getCantidad()" style="width: 20%; height: 20%;" readonly>
     <button class="btn btn-primary mx-1" (click)="sumarCantidad()">+</button>
   </div>
 </div>

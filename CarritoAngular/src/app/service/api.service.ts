@@ -16,7 +16,6 @@ export class ApiService {
       fetch('http://localhost:8080/api/carrito')
           .then(response => response.json())
           .then(apiData =>{
-            console.log(apiData);
             this.currency = apiData.currency;
             apiData.products.forEach((producto: IproductInterfaces) => {
               this.datos.push(producto);

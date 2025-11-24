@@ -27,15 +27,11 @@ export class CarritoComponent {
       ngOnInit(): void {
         this.arrayCarrito = this.ApiService.getAllProducts();//Cuando se inicia la pagina traigo los datos de la api
         this.currency = this.ApiService.getCurrency();
-        console.log(this.arrayCarrito);
-        console.log(this.currency + "Hola");
 
       // Esperar 200 ms para que fetch termine, ya que me lo da vacio sino
       setTimeout(() => {
         this.currency = this.ApiService.getCurrency();
 
-        console.log(this.arrayCarrito);
-        console.log(this.currency + " Hola");
       }, 200);
 
       }

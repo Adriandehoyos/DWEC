@@ -19,6 +19,8 @@ export class TotalComponent {
     this.arrayTotal = [];
   }
 
+
+
   ngOnInit(): void {
     //recogo los datos del array de productos seleccionados
     this.arrayTotal = this.CarritoService.getCarrito();
@@ -29,6 +31,9 @@ export class TotalComponent {
   }
 
 
+  eliminar(sku: String):void{
+    this.CarritoService.eliminarProducto(sku);
+  }
 
 
 }
