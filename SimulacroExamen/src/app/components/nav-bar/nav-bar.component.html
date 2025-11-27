@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">Simulacro</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLinkActive="active" [routerLink]="['/inicio']">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/productos']">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/sobrenosotros']">Sobre nosotros</a>
+        </li>
+        <li class="nav-item">
+          <!--Boton deshabilitado solo para admin-->
+          <a class="nav-link disabled" aria-disabled="true" routerLinkActive="active" [routerLink]="['/formulario']">Formulario</a>
+        </li>
+      </ul>
+              <!-- Boton on/off de admin sacado de uiverse -->
+        <div class="nav-item checkbox-wrapper-8 ms-auto d-flex mx-3 g-5">
+          <p>Modo Admin: </p>
+          <input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
+          <label for="cb3-8" data-tg-on="ON" data-tg-off="OFF" class="tgl-btn"></label>
+        </div>
+    </div>
+  </div>
+</nav>
