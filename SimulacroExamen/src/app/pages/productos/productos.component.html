@@ -1,1 +1,12 @@
-<p>Aqui tengo que tener el componente card product que tenga los datos pasado por un input</p>
+<div class="container mt-3 mb-5">
+  <div class="row row-cols-4">
+
+  @for (producto of productos; track producto.id) {
+        @if (producto.active) {
+          <div class="col">
+          <app-product-card [miProducto]="producto"></app-product-card>
+          </div>
+        }
+  }
+  </div>
+</div>

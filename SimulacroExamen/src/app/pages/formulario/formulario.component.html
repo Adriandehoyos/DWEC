@@ -1,1 +1,48 @@
-<p>formulario works!</p>
+<h1>Añade un Producto a la Tienda</h1>
+<hr>
+
+<form [formGroup]="productsForm" class="card p-3 shadow bg-secondary mb-5" (ngSubmit)="getDataForm()">
+  <div class="my-2">
+    <label for="name" class="for-label">Nombre</label>
+    <input type="text" name="name" id="name" class="form-control"
+        placeholder="Introduce el nombre del producto" formControlName="name">
+  </div>
+
+    <div class="my-2">
+    <label for="description" class="for-label">Descripcion</label>
+    <input type="text" name="description" id="description" class="form-control"
+        placeholder="Introduce la Descripcion del producto" formControlName="description">
+  </div>
+
+    <div class="my-2">
+    <label for="price" class="for-label">Precio</label>
+    <input type="number" name="price" id="price" class="form-control"
+        placeholder="Introduce el precio del producto" formControlName="price">
+  </div>
+
+    <div class="my-2">
+    <label for="category" class="for-label">Categoria</label>
+    <select name="category" id="category" class="form-control" formControlName="category">
+      <!--for de las categorias para que lo elija y no lo escriba-->
+        @for(categoria of ApiserviceService.getAllCategory() ; track $index){
+        <option [value]="categoria">{{categoria}}</option>
+        }
+    </select>
+  </div>
+
+    <div class="my-2">
+    <label for="image" class="for-label">Imagen</label>
+    <input type="text" name="image" id="image" class="form-control"
+        placeholder="Introduce la imagen del producto" formControlName="image">
+  </div>
+
+  <div class="my-2">
+    <label for="active" class="for-label">Activo</label>
+    <select name="active" id="active" class="form-control" formControlName="active">
+      <!--seleccion de true o false-->
+        <option [value]="true">true</option>
+        <option [value]="false">false</option>
+    </select>
+  </div>
+  <input type="submit" value="Enviar" class="btn btn-success mt-3" [disabled]="!productsForm.valid">
+</form>

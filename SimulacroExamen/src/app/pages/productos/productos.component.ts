@@ -1,10 +1,11 @@
 import { ApiserviceService } from './../../service/apiservice.service';
 import { Iproducto } from './../../interfaces/Iproducto.interfaces';
 import { Component, inject } from '@angular/core';
+import { ProductCardComponent } from "../../components/product-card/product-card.component";
 
 @Component({
   selector: 'app-productos',
-  imports: [],
+  imports: [ProductCardComponent],
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.css',
 })
