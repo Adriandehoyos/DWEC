@@ -5,7 +5,8 @@
     <h5 class="card-title">{{miProducto.name}}</h5>
     <p class="card-text">{{miProducto.category}}</p>
     <p class="card-text">{{miProducto.price}}€</p>
-    <a href="#" class="btn btn-primary">Ver Más</a>
+    <a [routerLink]="['/productos', miProducto.id]" class="btn btn-primary">Ver Más</a>
+    <a class="btn btn-danger" (click)="deletePro(miProducto)">Eliminar</a>
   </div>
 </div>
 </section>

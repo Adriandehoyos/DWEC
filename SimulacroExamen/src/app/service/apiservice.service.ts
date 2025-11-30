@@ -10,7 +10,7 @@ export class ApiserviceService {
   private arrayProducts: Iproducto[];
   private id: number;
   //declaro el array de categories
-  private categories: String[] = [];
+  private categories: string[] = [];
 
 
   constructor(){
@@ -39,9 +39,35 @@ export class ApiserviceService {
   }
 
   //get categorias
-  getAllCategory(): String[]{
+  getAllCategory(): string[]{
     return this.categories;
   }
+
+  //get por id
+  getById(miId: number): Iproducto{
+    let producto: Iproducto;
+    let response = this.arrayProducts.find(p => p.id == miId);
+    console.log("ARRAY EN GETBYID:", this.arrayProducts);
+    console.log("BUSCO ID:", miId);
+
+    if (response != undefined) {
+        producto = response;
+      }
+      else {
+          producto = {
+              id: -1,
+              name: "Producto no encontrado",
+              description: "Contacte con el adminsitrador",
+              category:"error"
+          }
+      }
+      return producto;
+  }
+
+  //get por categoria para el filtrado
+    getProductByCategory(categoria: string): Iproducto[] {
+        return this.arrayProducts.filter(producto => producto.category.includes(categoria));
+    }
 
 
   //metodo para añadir producto

@@ -2,10 +2,10 @@ export interface Iproducto {
   id: number;
   name: String;
   description: String;
-  price: number;
+  price?: number;
   category: String;
-  image: String;
-  active: boolean;
+  image?: String;
+  active?: boolean;
 
 
 

@@ -1,4 +1,5 @@
 <div class="container mt-3 mb-5">
+  <app-pro-filter (categoriaSelecionada)="getcategory($event)"></app-pro-filter>
   <div class="row row-cols-4">
 
   @for (producto of productos; track producto.id) {
@@ -7,6 +8,8 @@
           <app-product-card [miProducto]="producto"></app-product-card>
           </div>
         }
+  }@empty {
+    <h1>No hay Productos</h1>
   }
   </div>
 </div>
