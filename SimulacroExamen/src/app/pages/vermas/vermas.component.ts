@@ -19,13 +19,10 @@ export class VermasComponent {
         //suscripcion para coger el parametro de la url
         this.activatedRoute.params.subscribe((params: any) => {
             // recoger el parametro
-            console.log('PARAMS:', params);
-            let id: number = Number(params['id']); //lo pongo de esta manera ya que sino lo recoge como un string y da fallo de la otra manera seria asi params.id; 
-             console.log('ID CONVERTIDO:', id);  
-            if (id != undefined) {
+            let miId: number = Number(params.id); //lo pongo de esta manera ya que sino lo recoge como un string y da fallo de la otra manera seria asi params.id; 
+            if (miId != undefined) {
                 // Pedir al servicio el producto
-                let response = this.miServicio.getById(id);
-                console.log('PRODUCTO:', this.miProducto);  
+                let response = this.miServicio.getById(miId); 
                 if (response != undefined) {
                     // Rellenar mi propiedad miServicio
                     this.miProducto = response;

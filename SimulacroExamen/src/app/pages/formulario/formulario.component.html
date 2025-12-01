@@ -6,6 +6,14 @@
     <label for="name" class="for-label">Nombre</label>
     <input type="text" name="name" id="name" class="form-control"
         placeholder="Introduce el nombre del producto" formControlName="name">
+     <!--Validadores con errores en css-->
+    @if(checkControl('name','required')){
+    <p class="error">Campo requerido</p>
+    }
+
+    @if(checkControl('name','minlength')){
+    <p class="error">Longitud minima 3 caracteres</p>
+    }
   </div>
 
     <div class="my-2">

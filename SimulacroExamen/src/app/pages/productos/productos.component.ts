@@ -29,4 +29,10 @@ export class ProductosComponent {
     this.productos = this.ApiserviceService.getProductByCategory($event);
   }
 
+  //delete para que se borre tambien al filtrar
+  deleteProduct(id: number) {
+    this.ApiserviceService.deleteById(id);
+    this.productos = this.productos.filter(p => p.id !== id);
+  }
+
 }

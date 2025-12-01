@@ -16,7 +16,7 @@ export class FormularioComponent {
 
   constructor(){
     this.productsForm = new FormGroup({
-      name: new FormControl(null,[Validators.required]),
+      name: new FormControl(null,[Validators.required, Validators.minLength(3)]),
       description: new FormControl(null,[Validators.required]),
       price: new FormControl(null,[Validators.required]),
       category: new FormControl(null,[Validators.required]),
@@ -32,5 +32,9 @@ export class FormularioComponent {
   this.productsForm.reset();
 
     }
+
+  checkControl(formControlName: string, validator: string): boolean | undefined {
+  return this.productsForm.get(formControlName)?.hasError(validator) && this.productsForm.get(formControlName)?.touched
+  }
 
 }

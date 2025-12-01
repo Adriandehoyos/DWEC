@@ -6,7 +6,12 @@
     <p class="card-text">{{miProducto.category}}</p>
     <p class="card-text">{{miProducto.price}}€</p>
     <a [routerLink]="['/productos', miProducto.id]" class="btn btn-primary">Ver Más</a>
+    @if (rolesServices.currentRole === 'admin') {
     <a class="btn btn-danger" (click)="deletePro(miProducto)">Eliminar</a>
+    }@else {
+    <a class="btn btn-danger disabled" (click)="deletePro(miProducto)">Eliminar</a>
+    }
+
   </div>
 </div>
 </section>

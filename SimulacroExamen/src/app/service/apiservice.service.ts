@@ -33,6 +33,7 @@ export class ApiserviceService {
       });
   }
 
+
   //metodo para llevarte todos los productos
   getAllPro(): Iproducto[]{
     return this.arrayProducts;
@@ -46,7 +47,7 @@ export class ApiserviceService {
   //get por id
   getById(miId: number): Iproducto{
     let producto: Iproducto;
-    let response = this.arrayProducts.find(p => p.id == miId);
+    let response = this.arrayProducts.find(p => p.id === miId);
     console.log("ARRAY EN GETBYID:", this.arrayProducts);
     console.log("BUSCO ID:", miId);
 
