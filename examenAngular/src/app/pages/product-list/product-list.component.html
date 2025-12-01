@@ -1,0 +1,21 @@
+  <app-filter-form (categoriaSelect)="getcategory($event)"></app-filter-form>
+<div class="container mt-3 mb-5">
+    <div class="row row-cols-4">
+      @if (roles.currentRole == "admin") { <!--si eres admin te salen todos los productos-->
+        @for(producto of productos; track producto.id){
+        <div class="col">
+          <app-product-card [miProducto]="producto" (eliminar)="deleteProduct($event)"></app-product-card>
+        </div>
+      }
+      }@else {
+        @for(producto of productos; track producto.id){
+          @if (producto.active == true) { <!--si no eres admin solo los activos-->
+        <div class="col">
+          <app-product-card [miProducto]="producto" (eliminar)="deleteProduct($event)"></app-product-card>
+        </div>
+          }
+      }
+      }
+
+    </div>
+</div>

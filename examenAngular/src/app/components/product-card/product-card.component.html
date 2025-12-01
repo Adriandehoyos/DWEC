@@ -1,0 +1,21 @@
+<section>
+  <div class="card card-shadow" style="width: 18rem;">
+  <img [src]="miProducto.image" class="card-img-top" [alt]="miProducto.name" style="height: 24rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{miProducto.name}}</h5>
+    <p class="card-text">{{miProducto.category}}</p>
+    <p class="card-text">Precio: {{miProducto.price}}€</p>
+    <a [routerLink]="['/products', miProducto.id]" class="btn btn-primary m-2">Ver Más</a>
+
+    @if (RolesService.currentRole === 'admin') {
+    <a class="btn btn-danger" (click)="deletePro(miProducto)">Eliminar</a>
+    <a class="btn btn-warning" (click)="actualizar(miProducto)">Actualizar</a>
+    }@else {
+    <a class="btn btn-danger disabled" (click)="deletePro(miProducto)">Eliminar</a>
+    <a class="btn btn-warning disabled" (click)="actualizar(miProducto)">Actualizar</a>
+    }
+
+  </div>
+</div>
+</section>
+
