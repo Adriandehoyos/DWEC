@@ -88,6 +88,17 @@ export class ApiserviceService {
         }
   }
 
+  //metodo para hacer update de producto
+  updatePro(producto: Iproducto): void {
+    let i = this.arrayProducts.findIndex(p => p.id == producto.id);
+    producto.id = this.arrayProducts[i].id;
 
+    if (i != -1 && i >= 0 && i < this.arrayProducts.length) {
+        this.arrayProducts.splice(i, 1);
+    }
+
+    this.arrayProducts.push(producto);
+
+}
 
 }
