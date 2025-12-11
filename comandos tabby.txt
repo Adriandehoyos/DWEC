@@ -12,7 +12,7 @@ code .
 //levantar el servidor
 ng s -o
 //Crear componente
-ng g c componentes/nombreComponente
+ng g c componentes/nombreComponente --type=tipodelcomponente
 //instalar Bootstrap en el proyecto, tienes que estar dentro de la carpeta del proyecto
 npm install Bootstrap
 //Una vez instalado en el angular.json cambiamos la linea de Style y ponemos esta
