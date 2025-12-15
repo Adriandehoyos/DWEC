@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { Iuser } from '../../interfaces/iuser.interface';
+import { ApiServiceService } from '../../services/api-service.service';
 
 @Component({
   selector: 'app-user-card',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './user-card.component.css',
 })
 export class UserCardComponent {
+
+  userService = inject(ApiServiceService);
+  @Input() miUser!: Iuser;
+
 
 }

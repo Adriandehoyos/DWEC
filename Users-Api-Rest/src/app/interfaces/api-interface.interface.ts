@@ -1,6 +1,6 @@
 import { Iuser } from "./iuser.interface";
 
-export interface ApiIterface {
+export interface ApiInterface {
     page:        number;
     per_page:    number;
     total:       number;
