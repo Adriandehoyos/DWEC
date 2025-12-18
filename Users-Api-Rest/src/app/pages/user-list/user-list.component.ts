@@ -25,5 +25,9 @@ export class UserListComponent {
     })
   }
 
+  //elimino del array para que sea mas visual ya que no hay back
+  deleteUser(_id: string){
+    this.usersArray = this.usersArray.filter(u => u._id !== _id);
+  }
 
 }

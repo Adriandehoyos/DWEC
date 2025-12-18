@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { ApiInterface } from '../interfaces/api-interface.interface';
 import { Iuser } from '../interfaces/iuser.interface';
 
@@ -21,6 +21,25 @@ export class ApiServiceService {
       return this.httpClient.get<ApiInterface>(this.baseUrl);
     }
 
+    //get user por id
+    getUserById(_id: string): Promise<Iuser>{
+      return lastValueFrom(this.httpClient.get<Iuser>(`${this.baseUrl}/${_id}`))
+    }
+
+    //delete por id
+    deleteById(_id: string): Promise<Iuser>{
+      return lastValueFrom(this.httpClient.delete<Iuser>(`${this.baseUrl}/${_id}`))
+    }
+
+    //añadir un usuario nuevo
+    insertUser(user: Iuser): Promise<Iuser> {
+      return lastValueFrom(this.httpClient.post<Iuser>(this.baseUrl, user));
+    }
+
+    //actualizar un usuario
+    updateUser(user: Iuser): Promise<Iuser> {
+      return lastValueFrom(this.httpClient.put<Iuser>(`${this.baseUrl}/${user._id}`, user));
+    }
 
 
 }

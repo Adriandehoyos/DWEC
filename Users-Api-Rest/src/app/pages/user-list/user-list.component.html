@@ -4,7 +4,9 @@
   <div class="row row-cols-3 g-3">
 @for (user of usersArray; track user._id) {
   <div class="col">
-    <app-user-card [miUser]="user"></app-user-card>
+    <app-user-card [miUser]="user" (eliminar)="deleteUser($event)"></app-user-card>
   </div>
+}@empty {
+  <h1>No hay Usuarios</h1>
 }
 </div>
