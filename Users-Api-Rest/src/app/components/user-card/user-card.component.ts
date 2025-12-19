@@ -2,10 +2,11 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Iuser } from '../../interfaces/iuser.interface';
 import { ApiServiceService } from '../../services/api-service.service';
 import Swal from 'sweetalert2';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css',
 })
@@ -23,8 +24,8 @@ export class UserCardComponent {
         icon: "warning",
         showCancelButton: true,
         cancelButtonText: "Cancelar",
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
         confirmButtonText: "Eliminar"
       }).then((result) => {
 
