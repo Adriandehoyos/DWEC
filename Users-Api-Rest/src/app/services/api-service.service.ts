@@ -17,8 +17,13 @@ export class ApiServiceService {
     constructor(){}
 
     //en el get cojo el objeto entero pero luego en el componente tengo que igualarlo a un response.results para solo coger el array de usuarios
-    getAllUsers(): Observable<ApiInterface>{
-      return this.httpClient.get<ApiInterface>(this.baseUrl);
+    // getAllUsers(): Observable<ApiInterface>{
+    //   return this.httpClient.get<ApiInterface>(this.baseUrl);
+    // }
+
+    //Este es el get que voy a usar ahora al implementar la paginacion
+    getAllUsers(page: number = 1): Promise<ApiInterface>{
+      return lastValueFrom(this.httpClient.get<ApiInterface>(`${this.baseUrl}?page=${page}`));
     }
 
     //get user por id
