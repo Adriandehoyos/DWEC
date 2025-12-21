@@ -1,20 +1,33 @@
-<section class="container mt-3">
-    <h2 class="text-primary">{{miUser.first_name}} {{miUser.last_name}}</h2>
-    <h3 class="text-secondary">Nombre de usuario: {{miUser.username}}</h3>
-    <h3 class="text-secondary">Email: {{miUser.email}}</h3>
-    <div class="d-flex">
-    <img [src]="miUser.image" [alt]="miUser.username" class="rounded-circle">
-    <div>
-      <button type="button"class="btn btn-outline-danger">
+<div class="container">
+  <div class="row">
+  <div class="col">
+        <img [src]="miUser.image" [alt]="miUser.username" class="rounded-circle">
+  </div>
+
+  <div class="col">
+    <h1>{{miUser.first_name}} {{miUser.last_name}}</h1>
+    <br>
+    <h3 ><strong>Nombre de usuario:</strong> {{miUser.username}}</h3>
+    <br>
+    <h3><strong>Email:</strong> {{miUser.email}}</h3>
+    <br>
+    <div class="d-flex justify-content-center gap-2">
+
+    <div >
+      <button type="button"class="btn btn-outline-danger"(click)="deleteUser(miUser)">
         Eliminar
       </button>
-      <button type="button" class="btn btn-outline-warning" >
+      <button type="button" class="btn btn-outline-warning" [routerLink]="['/formulario', miUser._id]">
         Actualizar
       </button>
-      <button type="button" >
+      <button type="button" class="btn btn-outline-primary" [routerLink]="['/home']">
         Volvel al listado
       </button>
     </div>
 
     </div>
-</section>
+  </div>
+  </div>
+</div>
+
+

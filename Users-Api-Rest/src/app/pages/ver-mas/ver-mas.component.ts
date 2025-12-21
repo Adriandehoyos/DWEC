@@ -1,11 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Iuser } from '../../interfaces/iuser.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../services/api-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ver-mas',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './ver-mas.component.html',
   styleUrl: './ver-mas.component.css',
 })
@@ -30,4 +31,30 @@ export class VerMasComponent {
             }
         });
     }
+
+    async deleteUser(user: Iuser) {
+
+          await Swal.fire({
+            title: `Quieres eliminar a ${user.username}?`,
+            text: "No vas a poder restablecerlo",
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Eliminar"
+          }).then((result) => {
+
+            if (result.isConfirmed) {
+            this.userService.deleteById(user._id!);
+              Swal.fire({
+                title: "Eliminado",
+                text: `Has eliminado a ${user.username}`,
+                icon: "success"
+              });
+              //this.eliminar.emit(this.miUser._id); No uso el output ya que al volver al listado siempre va a cargar la lista entera otra vez
+              // ya que es solo un filtrado visual no lo elimina al no tener back
+            }
+          });
+       }
   }

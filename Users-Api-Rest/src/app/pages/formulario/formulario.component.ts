@@ -65,4 +65,30 @@ export class FormularioComponent {
   }
 
 
+  ngOnInit(): void{
+    this.activatedRoute.params.subscribe(async(params:any) =>{
+      let _id: string = params._id;
+      if(_id != undefined){
+        let miUser = await this.apiService.getUserById(_id);
+        if(miUser != undefined){
+          this.isNew = false;
+          this.userForm = new FormGroup({
+            _id: new FormControl(miUser._id, []),
+            id: new FormControl(miUser.id, []),
+            first_name: new FormControl(miUser.first_name, [Validators.required]),
+            last_name: new FormControl(miUser.last_name, [Validators.required]),
+            username: new FormControl(miUser.username, [Validators.required]),
+            email: new FormControl(miUser.email, [Validators.required]),
+            image: new FormControl(miUser.image, [Validators.required]),
+            password: new FormControl(miUser.password, [Validators.required])
+          },[])
+        }else{
+          alert("No se encuentra el user")
+        }
+      }
+    })
+  }
+
+
+
 }
