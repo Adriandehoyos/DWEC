@@ -21,3 +21,6 @@ npm install Bootstrap
             ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
+
+//crear interceptor
+ng g interceptor interceptors/auth --skip-tests
