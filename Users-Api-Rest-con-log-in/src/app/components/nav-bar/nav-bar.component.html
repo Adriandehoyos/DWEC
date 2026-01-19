@@ -8,10 +8,10 @@
       <div class="navbar-nav gap-3">
         @if (isToken) {
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']" >Home</a>
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/usuarios']">Usuarios</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/home/usuarios']">Usuarios</a>
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']" (click)="logout()">Log out</a>
         @if (isAdmin) {
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/formulario']">Nuevo Usuario</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/home/formulario']">Nuevo Usuario</a>
         }
         <a class="navbar-brand">{{username}} </a>
         }@else {

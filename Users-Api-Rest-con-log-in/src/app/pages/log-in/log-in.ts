@@ -14,7 +14,7 @@ export class LogIn {
 
   private loginService = inject(LoginService);
   private router = inject(Router);
-  @Output() login = new EventEmitter<boolean>(); //output para que al iniciar sesion se cambie el log in del navbar por un log out
+
 
     isToken: boolean;
 
@@ -44,8 +44,7 @@ export class LogIn {
                 localStorage.setItem("username", response.username);
                 localStorage.setItem("role", response.gender);
 
-                this.router.navigate(['/usuarios']);
-                this.login.emit(this.isToken);
+                this.router.navigate(['/home']);
                 loginForm.reset();
             }
 
