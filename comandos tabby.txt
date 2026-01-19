@@ -24,3 +24,6 @@ npm install Bootstrap
 
 //crear interceptor
 ng g interceptor interceptors/auth --skip-tests
+
+//crear guards
+ ng g guard guards/login
