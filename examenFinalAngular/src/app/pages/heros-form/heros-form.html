@@ -1,0 +1,67 @@
+<section class="container">
+  @if(isNew){
+  <h1>Insertar nuevo usuario</h1>
+  }@else {
+  <h1>Actualizar usuario</h1>
+  }
+
+  <hr>
+
+   <form [formGroup]="herosForm" class="card p-3 shadow bg-secondary" (ngSubmit)="getDataForm()">
+        <div class="my-2">
+            <label for="heroName" class="form-label mt-lg-3">Nombre de Heroe</label>
+            <input type="text" class="form-control" name="heroName" id="heroName" placeholder="Introduce el nombre de Heroe"
+                formControlName="heroName">
+        </div>
+
+        <div class="my-2">
+            <label for="fullName" class="form-label mt-lg-3">Nombre Completo</label>
+            <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Introduce el nombre Completo"
+                formControlName="fullName">
+        </div>
+
+        <div class="my-2">
+            <label for="image1" class="form-label mt-lg-3">Imagen 1</label>
+            <input type="text" class="form-control" name="image1" id="image1" placeholder="Introduce la primera imagen"
+                formControlName="image1">
+        </div>
+
+        <div class="my-2">
+            <label for="image2" class="form-label mt-lg-3">Imagen 2</label>
+            <input type="text" class="form-control" name="image2" id="image2"
+            formControlName="image2" placeholder="Introduce la segunda imagen">
+        </div>
+
+        <div class="my-2">
+            <label for="imag3e" class="form-label mt-lg-3">Imagen 3</label>
+            <input type="text" class="form-control" name="image3" id="image3" placeholder="Introduce la tercera imagen"
+                formControlName="image3">
+        </div>
+
+        <div class="my-2">
+            <label for="gender" class="form-label mt-lg-3">Genero</label>
+            <input type="text" class="form-control" name="gender" id="gender"
+                placeholder="Introduce el genero" formControlName="gender">
+        </div>
+
+          <div class="my-2">
+            <label for="race" class="form-label mt-lg-3">Raza</label>
+            <input type="text" class="form-control" name="race" id="race"
+                placeholder="Introduce la raza" formControlName="race">
+        </div>
+
+          <div class="my-2">
+            <label for="alignment" class="form-label mt-lg-3">Alignment</label>
+            <input type="text" class="form-control" name="alignment" id="alignment"
+                placeholder="Introduce el Alignment" formControlName="alignment">
+        </div>
+
+        <div class="d-flex ms-auto gap-2">
+            <input type="submit" value="Guardar" class="btn btn-success mt-5" [disabled]="!herosForm.valid && isNew">
+            <button class="btn btn-warning mt-5" [routerLink]="['/home']">Volver</button>
+        </div>
+    </form>
+
+
+
+</section>

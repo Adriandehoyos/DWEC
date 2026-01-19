@@ -1,0 +1,39 @@
+<body>
+
+    <header class="header">
+        <h1>Heros Final</h1>
+        <p>Tu página de Heroes de confianza</p>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            @if(isToken){
+            <li><a [routerLink]="['/dashboard']">DashBoard</a></li>
+            }@else{
+            <li><a [routerLink]="['/login']">Log in</a></li>
+            }
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="card">
+            <h2>Gestión de Heroes</h2>
+            <p>Administra la información de todos tus heroes favoritos.</p>
+        </section>
+
+        <section class="card">
+            <h2>Modificacion de Heroes</h2>
+            <p>Modifica los heroes a tu gusto.</p>
+        </section>
+
+        <section class="card">
+            <h2>Añadir nuevos Heroes</h2>
+            <p>Crea tu propio Heroe.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Heros - AdriánKode</p>
+    </footer>
+
+</body>
