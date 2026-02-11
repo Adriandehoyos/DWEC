@@ -23,7 +23,7 @@ export class Login {
 
     ngOnInit(): void{
     if (localStorage.getItem('token')){
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/dashboard']);
     }
   }
 

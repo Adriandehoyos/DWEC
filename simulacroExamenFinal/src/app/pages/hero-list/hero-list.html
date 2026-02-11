@@ -1,1 +1,34 @@
-<p>hero-list works!</p>
+<div class="container">
+    <h1>Lista de Heroes</h1>
+
+    <div class="row row-cols-3 g-3">
+    @for (hero of heroesArray; track hero.id) {
+    <div class="col">
+        <app-hero-card [miHero]="hero"></app-hero-card>
+    </div>
+    }@empty {
+    <h1>No hay Usuarios</h1>
+    }
+    </div>
+
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+    <button
+        class="btn btn-primary"
+        (click)="previousPage()"
+        [disabled]="currentpage === 1">
+        Anterior
+    </button>
+
+    <span class="badge bg-secondary fs-5 px-3 py-2">
+        Página {{ currentpage }} de {{ totalpages }}
+    </span>
+
+    <button
+        class="btn btn-primary"
+        (click)="nextPage()"
+        [disabled]="currentpage === totalpages">
+        Siguiente
+    </button>
+    </div>
+</div>

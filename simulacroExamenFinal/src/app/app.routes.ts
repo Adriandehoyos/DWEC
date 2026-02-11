@@ -4,6 +4,8 @@ import { Login } from './pages/login/login';
 import { loginGuard, publicGuard } from './guards/login-guard';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { HeroList } from './pages/hero-list/hero-list';
+import { HeroForm } from './pages/hero-form/hero-form';
+import { VerMas } from './pages/ver-mas/ver-mas';
 
 export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'landing'},
@@ -12,6 +14,9 @@ export const routes: Routes = [
     {path: 'dashboard', component: Dashboard, canActivate: [loginGuard], children:
         [
             {path: 'heroes', component: HeroList},
+            {path: 'formulario', component: HeroForm},
+            {path: 'formulario/:id', component: HeroForm},//actualizar
+            {path: 'heroes/:id', component: VerMas}
         ]
     },
 
