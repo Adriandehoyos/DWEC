@@ -1,59 +1,214 @@
-# SimulacroExamenFinal
+Para los filtros como seria el heroes list html con filtros
+<div class="container">
+    <h1>Lista de Heroes</h1>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+    <!-- FILTROS -->
+    <div class="card p-3 mb-4">
+        <h5>Filtros</h5>
+        <div class="row">
+            <!-- Filtro por nombre -->
+            <div class="col-md-4">
+                <label class="form-label">Buscar por nombre:</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Escribe el nombre..."
+                    [(ngModel)]="filtroNombre"
+                    (input)="aplicarFiltros()">
+            </div>
 
-## Development server
+            <!-- Filtro por género -->
+            <div class="col-md-4">
+                <label class="form-label">Filtrar por género:</label>
+                <select class="form-select" [(ngModel)]="filtroGenero" (change)="aplicarFiltros()">
+                    <option value="">Todos</option>
+                    <option value="Male">Masculino</option>
+                    <option value="Female">Femenino</option>
+                </select>
+            </div>
 
-To start a local development server, run:
+            <!-- Filtro por alineamiento -->
+            <div class="col-md-4">
+                <label class="form-label">Filtrar por alineamiento:</label>
+                <select class="form-select" [(ngModel)]="filtroAlignment" (change)="aplicarFiltros()">
+                    <option value="">Todos</option>
+                    <option value="good">Héroe</option>
+                    <option value="bad">Villano</option>
+                </select>
+            </div>
+        </div>
 
-```bash
-ng serve
-```
+        <!-- Botón para limpiar filtros -->
+        <div class="mt-3">
+            <button class="btn btn-secondary" (click)="limpiarFiltros()">Limpiar filtros</button>
+        </div>
+    </div>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+    <!-- LISTA DE HÉROES -->
+    <div class="row row-cols-3 g-3">
+        @for (hero of heroesFiltrados; track hero) {
+            <div class="col">
+                <app-hero-card [miHero]="hero"></app-hero-card>
+            </div>
+        }@empty {
+            <h3>No hay héroes que coincidan con los filtros</h3>
+        }
+    </div>
 
-## Code scaffolding
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+        <button
+            class="btn btn-primary"
+            (click)="previousPage()"
+            [disabled]="currentpage === 0">
+            Anterior
+        </button>
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+        <span class="badge bg-secondary fs-5 px-3 py-2">
+            Página {{ currentpage + 1}} de {{ totalpages }}
+        </span>
 
-```bash
-ng generate component component-name
-```
+        <button
+            class="btn btn-primary"
+            (click)="nextPage()"
+            [disabled]="currentpage === totalpages - 1">
+            Siguiente
+        </button>
+    </div>
+</div>
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
 
-## Building
 
-To build the project run:
 
-```bash
-ng build
-```
+Y el TS para los filtros entero
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+import { Component, inject } from '@angular/core';
+import { Ihero } from '../../interfaces/ihero.interface';
+import { HeroService } from '../../service/hero.service';
+import { HeroCard } from '../../components/hero-card/hero-card';
+import { ChangeDetectorRef } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // ¡IMPORTANTE! Añadir este import
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+@Component({
+  selector: 'app-hero-list',
+  imports: [HeroCard, FormsModule], // ¡IMPORTANTE! Añadir FormsModule aquí
+  templateUrl: './hero-list.html',
+  styleUrl: './hero-list.css',
+})
+export class HeroList {
 
-```bash
-ng test
-```
+  heroesArray: Ihero[] = [];
+  heroesFiltrados: Ihero[] = []; // Array que se mostrará después de filtrar
+  heroService = inject(HeroService);
+  currentpage: number = 0;
+  totalpages: number = 3;
+  private cdr = inject(ChangeDetectorRef);
 
-## Running end-to-end tests
+  // Variables para los filtros
+  filtroNombre: string = '';
+  filtroGenero: string = '';
+  filtroAlignment: string = '';
 
-For end-to-end (e2e) testing, run:
+  ngOnInit(): void {
+    this.loadCharacters(0);
+  }
 
-```bash
-ng e2e
-```
+  loadCharacters(page: number): void {
+    this.heroService.getAllHeroes(page).subscribe({
+      next: (response) => {
+        this.heroesArray = response.content;
+        this.currentpage = response.number;
+        this.totalpages = response.totalPages;
+        this.aplicarFiltros(); // Aplicar filtros después de cargar
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error al cargar personajes:', err);
+      }
+    });
+  }
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+  // Método para aplicar los filtros
+  aplicarFiltros(): void {
+    this.heroesFiltrados = this.heroesArray.filter(hero => {
+      // Filtro por nombre (si hay texto en el input)
+      const cumpleNombre = !this.filtroNombre || 
+        hero.heroname.toLowerCase().includes(this.filtroNombre.toLowerCase()) ||
+        hero.fullname.toLowerCase().includes(this.filtroNombre.toLowerCase());
 
-## Additional Resources
+      // Filtro por género
+      const cumpleGenero = !this.filtroGenero || hero.gender === this.filtroGenero;
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+      // Filtro por alineamiento
+      const cumpleAlignment = !this.filtroAlignment || hero.alignment === this.filtroAlignment;
+
+      // El héroe debe cumplir TODOS los filtros activos
+      return cumpleNombre && cumpleGenero && cumpleAlignment;
+    });
+  }
+
+  // Método para limpiar todos los filtros
+  limpiarFiltros(): void {
+    this.filtroNombre = '';
+    this.filtroGenero = '';
+    this.filtroAlignment = '';
+    this.aplicarFiltros();
+  }
+
+  previousPage(): void {
+    if (this.currentpage > 0) {
+      this.loadCharacters(this.currentpage - 1);
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentpage < this.totalpages - 1) {
+      this.loadCharacters(this.currentpage + 1);
+    }
+  }
+}
+
+
+
+
+Para el filtro por superpoderes
+<!-- Dentro de la sección de filtros -->
+<div class="col-md-4">
+    <label class="form-label">Poder mínimo:</label>
+    <input 
+        type="number" 
+        class="form-control" 
+        placeholder="Ej: 50"
+        [(ngModel)]="filtroPower"
+        (change)="filtrarPorPower()">
+</div>
+
+
+
+
+//en el ts esto
+
+
+filtroPower: number = 0;
+
+filtrarPorPower(): void {
+  if (this.filtroPower > 0) {
+    this.heroService.getHeroesByPower(this.filtroPower).subscribe({
+      next: (heroes) => {
+        this.heroesArray = heroes;
+        this.aplicarFiltros();
+      }
+    });
+  } else {
+    this.loadCharacters(this.currentpage);
+  }
+}
+
+
+//y en el service esto
+// Método para buscar por power
+getHeroesByPower(power: number): Observable<Ihero[]> {
+  return this.httpClient.get<Ihero[]>(`${this.baseUrl}/power/${power}`);
+}
