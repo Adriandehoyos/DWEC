@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Ihero } from '../../interfaces/ihero.interface';
 import { HeroService } from '../../service/hero.service';
 import { HeroCard } from '../../components/hero-card/hero-card';
+import { ChangeDetectorRef } from '@angular/core'; //prueba para error en paginacion
+
 
 @Component({
   selector: 'app-hero-list',
@@ -15,30 +17,35 @@ export class HeroList {
   heroService = inject(HeroService);
   currentpage: number;
   totalpages: number;
+  private cdr = inject(ChangeDetectorRef);//prueba para error en paginacion
+
 
   constructor(){
     this.heroesArray = [];
     this.currentpage = 0;
-    this.totalpages = 1;
+    this.totalpages = 3;
   }
 
 
-      async ngOnInit(): Promise<void>{
-        this.loadCharacters(this.currentpage);
+       ngOnInit(): void{
+        this.loadCharacters(0);
   }
 
-    async loadCharacters(page: number): Promise<void> {
-    try {
-      // GET /api/characters?page=0&size=9
-      const response = await this.heroService.getAllHeroes(page, 9);
-      this.heroesArray = response.content; // Spring devuelve los datos en 'content'
-      this.currentpage = response.number;       // Spring devuelve la página actual en 'number'
+loadCharacters(page: number): void {
+  this.heroService.getAllHeroes(page).subscribe({
+    next: (response) => {
+      this.heroesArray = response.content;
+      this.currentpage = response.number;
       this.totalpages = response.totalPages;
+      this.cdr.detectChanges(); //prueba para error en paginacion
       console.log(this.heroesArray);
-    } catch (error) {
-      console.error('Error al cargar personajes:', error);
+    },
+    error: (err) => {
+      console.error('Error al cargar personajes:', err);
     }
-  }
+  });
+}
+
 
     previousPage(): void {
     if (this.currentpage > 0) { // Spring empieza en 0
@@ -47,7 +54,7 @@ export class HeroList {
   }
 
   nextPage(): void {
-    if (this.currentpage < this.totalpages - 1) { // totalPages es el total, no el índice
+    if (this.currentpage < this.totalpages -1) { // totalPages es el total, no el índice
       this.loadCharacters(this.currentpage + 1);
     }
   }

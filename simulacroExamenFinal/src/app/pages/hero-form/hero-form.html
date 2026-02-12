@@ -1,1 +1,102 @@
-<p>hero-form works!</p>
+<section class="container">
+
+  <!-- Título -->
+  @if(isNew){
+    <h1>Insertar nuevo héroe</h1>
+  }@else{
+    <h1>Actualizar héroe</h1>
+  }
+  <hr>
+
+  <form [formGroup]="heroForm" class="card p-3 shadow bg-secondary" (ngSubmit)="getDataForm()">
+
+    <!-- Nombre del héroe -->
+    <div class="my-2">
+      <label class="form-label">Nombre del héroe</label>
+      <input type="text" class="form-control" formControlName="heroname" placeholder="Introduce el nombre del héroe">
+    </div>
+
+    <!-- Nombre completo -->
+    <div class="my-2">
+      <label class="form-label">Nombre completo</label>
+      <input type="text" class="form-control" formControlName="fullname" placeholder="Introduce el nombre completo">
+    </div>
+
+    <!-- Imágenes -->
+    <div class="my-2">
+      <label class="form-label">Imagen 1</label>
+      <input type="text" class="form-control" formControlName="image1" placeholder="Introduce el link de la imagen 1">
+    </div>
+
+    <div class="my-2">
+      <label class="form-label">Imagen 2</label>
+      <input type="text" class="form-control" formControlName="image2" placeholder="Introduce el link de la imagen 2">
+    </div>
+
+    <div class="my-2">
+      <label class="form-label">Imagen 3</label>
+      <input type="text" class="form-control" formControlName="image3" placeholder="Introduce el link de la imagen 3">
+    </div>
+
+    <!-- Género -->
+    <div class="my-2">
+      <label class="form-label">Género</label>
+      <input type="text" class="form-control" formControlName="gender" placeholder="Masculino/Femenino">
+    </div>
+
+    <!-- Raza -->
+    <div class="my-2">
+      <label class="form-label">Raza</label>
+      <input type="text" class="form-control" formControlName="race" placeholder="Introduce la raza">
+    </div>
+
+    <!-- Alineamiento -->
+    <div class="my-2">
+      <label class="form-label">Alineamiento</label>
+      <input type="text" class="form-control" formControlName="alignment" placeholder="good/evil/neutral">
+    </div>
+
+    <!-- Powerstats -->
+    <div formGroupName="powerstats" class="mt-3 p-2 border rounded">
+      <h5>Powerstats</h5>
+
+      <div class="my-2">
+        <label class="form-label">Intelligence</label>
+        <input type="number" class="form-control" formControlName="intelligence">
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Strength</label>
+        <input type="number" class="form-control" formControlName="strength">
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Speed</label>
+        <input type="number" class="form-control" formControlName="speed">
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Durability</label>
+        <input type="number" class="form-control" formControlName="durability">
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Power</label>
+        <input type="number" class="form-control" formControlName="power">
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Combat</label>
+        <input type="number" class="form-control" formControlName="combat">
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="d-flex ms-auto gap-2">
+      <input type="submit" value="Guardar" class="btn btn-success mt-3" [disabled]="!heroForm.valid && isNew">
+      <button class="btn btn-warning mt-3" [routerLink]="['/dashboard/heroes']">Volver</button>
+    </div>
+
+  </form>
+</section>
+

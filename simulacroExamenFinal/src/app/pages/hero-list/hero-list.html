@@ -2,7 +2,7 @@
     <h1>Lista de Heroes</h1>
 
     <div class="row row-cols-3 g-3">
-    @for (hero of heroesArray; track hero.id) {
+    @for (hero of heroesArray; track hero) {
     <div class="col">
         <app-hero-card [miHero]="hero"></app-hero-card>
     </div>
@@ -16,18 +16,18 @@
     <button
         class="btn btn-primary"
         (click)="previousPage()"
-        [disabled]="currentpage === 1">
+        [disabled]="currentpage === 0">
         Anterior
     </button>
 
     <span class="badge bg-secondary fs-5 px-3 py-2">
-        Página {{ currentpage }} de {{ totalpages }}
+        Página {{ currentpage + 1}} de {{ totalpages }}
     </span>
 
     <button
         class="btn btn-primary"
         (click)="nextPage()"
-        [disabled]="currentpage === totalpages">
+        [disabled]="currentpage === totalpages - 1">
         Siguiente
     </button>
     </div>
