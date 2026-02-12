@@ -1,0 +1,173 @@
+<section class="container">
+
+  <!-- Título -->
+  @if(isNew){
+    <h1>Insertar nuevo Ninja</h1>
+  }@else{
+    <h1>Actualizar Ninja</h1>
+  }
+  <hr>
+
+  <form [formGroup]="ninjaForm" class="card p-3 shadow bg-secondary" (ngSubmit)="getDataForm()">
+
+    <!-- Nombre del ninja -->
+    <div class="my-2">
+      <label class="form-label">Nombre del Ninja</label>
+      <input type="text" class="form-control" formControlName="ninjaname" placeholder="Introduce el nombre del ninja">
+          @if(checkControl('ninjaname','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <!-- Nombre completo -->
+    <div class="my-2">
+      <label class="form-label">Nombre completo</label>
+      <input type="text" class="form-control" formControlName="fullname" placeholder="Introduce el nombre completo">
+                @if(checkControl('fullname','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <!-- Afiliacion clan y genero-->
+    <div class="my-2">
+      <label class="form-label">Afiliación</label>
+      <input type="text" class="form-control" formControlName="affiliation" placeholder="Introduce la Afiliación">
+                      @if(checkControl('affiliation','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <div class="my-2">
+      <label class="form-label">Clan</label>
+      <input type="text" class="form-control" formControlName="clan" placeholder="Introduce el clan">
+                      @if(checkControl('clan','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <div class=" my-2">
+      <label class="form-label">Genero</label>
+      <select class="form-select" class="form-control" formControlName="gender">
+        <option selected>Elige...</option>
+        <option value="Male">Masculino</option>
+        <option value="Female">Femenino</option>
+      </select>
+    </div>
+
+    <!-- Imágenes -->
+    <div class="my-2">
+      <label class="form-label">Imagen 1</label>
+      <input type="text" class="form-control" formControlName="image1" placeholder="Introduce el link de la imagen 1">
+                      @if(checkControl('image1','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <div class="my-2">
+      <label class="form-label">Imagen 2</label>
+      <input type="text" class="form-control" formControlName="image2" placeholder="Introduce el link de la imagen 2">
+                      @if(checkControl('image2','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <!-- Level -->
+    <div class="my-2">
+      <label class="form-label">Level</label>
+      <input type="text" class="form-control" formControlName="level" placeholder="Introduce el level">
+                      @if(checkControl('level','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <!-- Naturetype -->
+    <div class="my-2">
+      <label class="form-label">NatureType</label>
+      <input type="text" class="form-control" formControlName="naturetype" placeholder="Introduce el naturetype">
+                      @if(checkControl('naturetype','required')){
+    <p class="error">Campo requerido</p>
+    }
+    </div>
+
+    <!-- Estadisticas -->
+    <div formGroupName="stats" class="mt-3 p-2 border rounded">
+      <h5>Estadisticas</h5>
+
+      <div class="my-2">
+        <label class="form-label">Genjutsu</label>
+        <input type="number" class="form-control" formControlName="genjutsu">
+                  @if(checkControl('genjutsu','required')){
+    <p class="error">Campo requerido</p>
+    }
+            @if(checkControl('genjutsu','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Handseals</label>
+        <input type="number" class="form-control" formControlName="handseals">
+                    @if(checkControl('handseals','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Intelligence</label>
+        <input type="number" class="form-control" formControlName="intelligence">
+                    @if(checkControl('intelligence','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Ninjutsu</label>
+        <input type="number" class="form-control" formControlName="ninjutsu">
+                    @if(checkControl('ninjutsu','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Speed</label>
+        <input type="number" class="form-control" formControlName="speed">
+          @if(checkControl('speed','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Stamina</label>
+        <input type="number" class="form-control" formControlName="stamina">
+                    @if(checkControl('stamina','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Strength</label>
+        <input type="number" class="form-control" formControlName="strength">
+                    @if(checkControl('strength','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+      <div class="my-2">
+        <label class="form-label">Taijutsu</label>
+        <input type="number" class="form-control" formControlName="taijutsu">
+                    @if(checkControl('taijutsu','max')){
+        <p class="error">Maximo 100 puntos</p>
+        }
+      </div>
+
+    </div>
+
+    <!-- Botones -->
+    <div class="d-flex ms-auto gap-2">
+      <input type="submit" value="Guardar" class="btn btn-success mt-3" [disabled]="!ninjaForm.valid && isNew">
+      <button class="btn btn-warning mt-3" [routerLink]="['/dashboard/ninjas']">Volver</button>
+    </div>
+
+  </form>
+</section>
+

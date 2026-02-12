@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Lista de Ninjas</h1>
+    <br>
+
+
+    <div class="row row-cols-3 g-3">
+    @for (ninja of ninjaArray; track ninja.id) {
+    <div class="col">
+        <app-ninja-card [miNinja]="ninja"></app-ninja-card>
+    </div>
+    }@empty {
+    <h1>No hay Ninjas</h1>
+    }
+    </div>
+
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+    <button
+        class="btn btn-primary"
+        (click)="previousPage()"
+        [disabled]="currentPage === 0">
+        Anterior
+    </button>
+
+    <span class="badge bg-secondary fs-5 px-3 py-2">
+        Página {{ currentPage + 1}} de {{ totalPages }}
+    </span>
+
+    <button
+        class="btn btn-primary"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages - 1">
+        Siguiente
+    </button>
+    </div>
+</div>
